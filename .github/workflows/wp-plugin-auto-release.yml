@@ -1,0 +1,88 @@
+name: WP Plugin Auto Release (reusable)
+
+on:
+  workflow_call:
+    inputs:
+      plugin_main_file:
+        required: true
+        type: string
+      plugin_slug:
+        required: true
+        type: string
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    if: ${{ vars.ENABLE_AUTO_RELEASE == 'true' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Extract version
+        id: v
+        shell: bash
+        run: |
+          set -euo pipefail
+          FILE="${{ inputs.plugin_main_file }}"
+          if [[ ! -f "$FILE" ]]; then
+            echo "Main file not found: $FILE" >&2
+            exit 1
+          fi
+          VERSION=$(grep -oP '^\s*\*?\s*Version:\s*\K[0-9]+(?:\.[0-9]+){1,3}' "$FILE" || true)
+          if [[ -z "$VERSION" ]]; then
+            echo "Version not found in $FILE" >&2
+            exit 1
+          fi
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Check if tag exists
+        id: chk
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="v${{ steps.v.outputs.version }}"
+          if git rev-parse "$TAG" >/dev/null 2>&1; then
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create and push tag
+        if: steps.chk.outputs.exists == 'false'
+        shell: bash
+        run: |
+          set -euo pipefail
+          TAG="v${{ steps.v.outputs.version }}"
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git tag "$TAG"
+          git push origin "$TAG"
+
+      - name: Build ZIP (slug folder, versioned filename)
+        id: build
+        shell: bash
+        run: |
+          set -euo pipefail
+          SLUG="${{ inputs.plugin_slug }}"
+          VER="${{ steps.v.outputs.version }}"
+          mkdir -p dist
+          rsync -a --delete --exclude='.git' --exclude='.github' --exclude='dist' ./ "dist/${SLUG}/"
+          cd dist
+          zip -r "${SLUG}-${VER}.zip" "${SLUG}"
+          echo "zip_path=$GITHUB_WORKSPACE/dist/${SLUG}-${VER}.zip" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        if: steps.chk.outputs.exists == 'false'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: v${{ steps.v.outputs.version }}
+          name: v${{ steps.v.outputs.version }}
+          files: ${{ steps.build.outputs.zip_path }}
+          generate_release_notes: true
+
+
