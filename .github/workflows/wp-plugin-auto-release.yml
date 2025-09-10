@@ -1,3 +1,37 @@
+# ISTRUZIONI RAPIDE PER NUOVE REPOSITORY
+# 1) Abilita il workflow riutilizzabile aggiungendo in ogni repo un caller minimale:
+#    .github/workflows/auto-release.yml
+#    ---
+#    name: Auto release on version change
+#    on:
+#      push:
+#        branches: [ main, master ]   # aggiorna se usi un branch diverso
+#        paths:
+#          - 'PERCORSO_DEL_FILE_PLUGIN.php'   # es: otp-email.php
+#      workflow_dispatch:
+#    permissions:
+#      contents: write
+#    jobs:
+#      call-reusable:
+#        uses: mathrim87/.github/.github/workflows/wp-plugin-auto-release.yml@main
+#        with:
+#          plugin_main_file: PERCORSO_DEL_FILE_PLUGIN.php   # es: otp-email.php
+#          plugin_slug: SLUG_CARTELLA_PLUGIN                # es: otp-email-login-form
+#
+# 2) In ogni repo dove vuoi attivarlo: Settings → Actions → Variables → Aggiungi
+#    ENABLE_AUTO_RELEASE = true
+#
+# 3) Assicurati che il file principale del plugin contenga l'header versione nel formato:
+#    "Version: X.Y.Z" (es. 1.2.3). Il bump della versione + push sul branch trigger crea tag e release.
+#
+# 4) Output: viene creata una release con tag vX.Y.Z e allegato ZIP "slug-X.Y.Z.zip"
+#    con cartella interna senza versione: "slug/".
+#
+# 5) Note:
+#    - Se il tag esiste già, il workflow non ricrea la release.
+#    - Puoi avviare manualmente da Actions → Run workflow (workflow_dispatch).
+#    - Il percorso uses con doppio .github è corretto: repo ".github" + cartella ".github/workflows".
+
 name: WP Plugin Auto Release (reusable)
 
 on:
