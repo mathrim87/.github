@@ -18,7 +18,7 @@
 #          plugin_main_file: PERCORSO_DEL_FILE_PLUGIN.php   # es: otp-email.php
 #          plugin_slug: SLUG_CARTELLA_PLUGIN                # es: otp-email-login-form
 #
-# 2) In ogni repo dove vuoi attivarlo: Settings → Actions → Variables → Aggiungi
+# 2) In ogni repo dove vuoi attivarlo: Settings → Secrets and variables → Actions → Variables → Aggiungi
 #    ENABLE_AUTO_RELEASE = true
 #
 # 3) Assicurati che il file principale del plugin contenga l'header versione nel formato:
