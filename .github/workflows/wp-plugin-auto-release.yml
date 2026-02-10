@@ -17,6 +17,7 @@
 #        with:
 #          plugin_main_file: PERCORSO_DEL_FILE_PLUGIN.php   # es: otp-email.php
 #          plugin_slug: SLUG_CARTELLA_PLUGIN                # es: otp-email-login-form
+#        secrets: inherit
 #
 # 2) In ogni repo dove vuoi attivarlo: Settings → Secrets and variables → Actions → Variables → Aggiungi
 #    ENABLE_AUTO_RELEASE = true
@@ -114,6 +115,7 @@ jobs:
         if: steps.chk.outputs.exists == 'false'
         uses: softprops/action-gh-release@v2
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           tag_name: v${{ steps.v.outputs.version }}
           name: v${{ steps.v.outputs.version }}
           files: ${{ steps.build.outputs.zip_path }}
