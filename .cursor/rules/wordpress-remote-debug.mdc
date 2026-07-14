@@ -1,0 +1,51 @@
+---
+description: Debug WordPress su hosting remoto — preferire relay JS lato browser verso Cursor
+alwaysApply: true
+---
+
+# Debug WordPress remoto (codice locale, sito su staging/live)
+
+## Contesto
+
+Il codice gira su **hosting remoto**; Cursor legge i log solo dal workspace (es. `.cursor/debug-{sessionId}.log`). Il collector è su `127.0.0.1` **sulla macchina del developer**, non sul server.
+
+## Default: client-side (JS nel browser)
+
+Usare **sempre** il relay browser:
+
+1. **PHP**: accodare payload in `$GLOBALS` (es. coda debug) durante la request.
+2. **`wp_footer`**: script inline che fa `fetch(endpoint, { method:'POST', headers:{'X-Debug-Session-Id':sessionId}, body: JSON.stringify(payload) })` con `.catch(()=>{})`.
+3. **Form/pagine**: opzionale log diretto in `<script>` al DOM ready per GET/URL/state UI.
+
+**Non usare** `wp_remote_post('http://127.0.0.1:7713/...')` da PHP sul server: colpisce il localhost del **server**, non Cursor.
+
+## Server-side (file su disco)
+
+Plausibile solo se WordPress gira **in locale sulla stessa macchina** di Cursor, con log path nel workspace. Su staging/live **non è la modalità predefinita**.
+
+Se il contesto è ambiguo, **chiedere una volta** per sessione di debug:
+- *Client-side (JS, hosting remoto)* — default
+- *Server-side (solo WP locale + path workspace)*
+
+## Live / staging — rischi
+
+- Gli altri visitatori **non** inviano dati a Cursor: il loro `fetch` a `127.0.0.1` va al **loro** PC (fallisce in silenzio).
+- Restano rischi minori: script visibile in sorgente, overhead, log con dati sensibili se mal progettati.
+- **Rimuovere** sempre l'instrumentation dopo il debug; in staging opzionale guard `WP_DEBUG` o parametro admin (`?agent_debug=1`) + solo per utenti loggati admin.
+- Nei payload: **no PII** (no email, nomi, token); per codici prodotto usare lunghezza/hash se basta.
+
+## Chiusura debug (obbligatorio)
+
+Dopo conferma del fix con log `runId: post-fix`:
+
+1. Rimuovere tutta l'instrumentation dal codice (regioni `agent log`, script relay, coda `$GLOBALS`).
+2. **Cancellare** il file `.cursor/debug-{sessionId}.log` nel workspace — non lasciarlo untracked né committarlo.
+3. Non riaprire una nuova sessione di debug sullo stesso file se il problema è già risolto.
+
+## Checklist rapida
+
+- [ ] Endpoint e `sessionId` da system reminder debug mode
+- [ ] Log in regioni `// #region agent log` piegabili
+- [ ] Cancellare `.cursor/debug-{sessionId}.log` prima di ogni run
+- [ ] Verifica post-fix con `runId: post-fix` prima di rimuovere i log
+- [ ] Dopo il fix: rimuovere instrumentation **e** cancellare `.cursor/debug-{sessionId}.log`

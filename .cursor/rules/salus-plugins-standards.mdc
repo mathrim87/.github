@@ -1,0 +1,60 @@
+---
+description: Standard comuni plugin WordPress Salus — governance workspace
+alwaysApply: true
+---
+
+# Standard plugin Salus (workspace)
+
+## Dove vivono le regole Cursor
+
+- **Condivise (workspace-wide):** `.github/.cursor/rules/` — una sola copia, `alwaysApply: true`
+- **Specifiche per progetto:** solo eccezioni reali in `{repo}/.cursor/rules/` — evitare duplicati delle regole condivise
+
+Regole satellite nello stesso folder `.github/.cursor/rules/`:
+- `salus-admin-version.mdc` — markup versione nel titolo H1 admin
+- `wordpress-remote-debug.mdc` — debug su hosting remoto
+- `old-folders.mdc` — esclusione cartelle OLD
+
+## Menu Salus
+
+- Usare `Salus_Admin_Menu::register_submenu()` (helper condiviso nel plugin o in `includes/salus-admin-menu.php`)
+- Non creare menu top-level Salus duplicati
+- Capability tipica: `manage_options`
+
+## Versione nel titolo admin
+
+Vedi `salus-admin-version.mdc`: classe `salus-plugin-version`, costante `*_VERSION` allineata all'header `Version:`.
+
+## Versioning
+
+Quando l'utente chiede **"versioning"**:
+
+1. **Bump versione minore:** +1 all'ultima cifra (es. 1.6.2 → 1.6.3)
+2. **Aggiornare CHANGELOG.md:** nuova entry in cima con le modifiche della sessione
+
+Dove aggiornare la versione:
+- Header del file principale del plugin (`Version:`)
+- Costante `*_VERSION` nel file principale (es. `LDCT_VERSION`, `PREFIX_VERSION`)
+
+Formato changelog: sezioni `### Corretto`, `### Aggiunto`, `### Migliorato`, `### Tecnico`, ecc.
+
+## Sistema aggiornamento
+
+- **Plugin distribuiti via GitHub** (release automatiche): workflow in repo `.github` — mantenere header versione e tag allineati
+- **Snippet / codice one-off:** in genere senza updater automatico
+
+## Integrazioni plugin esterni (LearnDash, WooCommerce, FluentCRM, …)
+
+Obbligatorio se il plugin usa hook, filtri, funzioni o classi del plugin esterno:
+
+- File `docs/{plugin}-integration.md` nel repo del plugin
+- Tabella con colonne: Tipo, Nome, Uso, File, Since, **Verificato il**, Target produzione, Note
+- Preferire API documentate + `function_exists()` / fallback
+- Documentare la versione target in produzione (es. LearnDash 5.1.6)
+- Aggiornare `Verificato il` quando si cambia versione target o si tocca l'integrazione
+
+Opzionale se c'è solo `is_plugin_active()` senza API/hook del plugin esterno.
+
+## Debug WordPress remoto
+
+Vedi `wordpress-remote-debug.mdc`: relay JS nel browser, non `wp_remote_post` verso localhost dal server remoto.

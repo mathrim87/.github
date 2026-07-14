@@ -1,0 +1,23 @@
+---
+description: Ignora completamente le cartelle OLD durante l'esplorazione dello workspace
+alwaysApply: true
+---
+
+# Cartelle OLD = cestino
+
+Le cartelle denominate `OLD` (in qualsiasi punto dello spazio di lavoro, a qualsiasi livello di profondità) contengono codice **non più utilizzato** o con logiche vecchie. Vanno trattate come un cestino.
+
+## Regole
+
+- NON leggere file dentro cartelle `OLD/` per rispondere a domande sul codice attivo.
+- NON proporre modifiche a file dentro `OLD/`.
+- NON usare file dentro `OLD/` come riferimento per capire la logica corrente del progetto.
+- Se una ricerca (Grep/Glob/SemanticSearch) restituisce match dentro `OLD/`, **scartali** dai risultati che presenti all'utente.
+- Se l'utente chiede esplicitamente di lavorare su `OLD/`, allora si può fare — ma solo su richiesta esplicita.
+
+## Pattern da escludere
+
+Qualsiasi path che contenga un segmento `OLD` (case-sensitive maiuscolo), ad esempio:
+
+- `**/OLD/**`
+- `**/old-*/**` (NON è OLD, va incluso normalmente — solo `OLD` esatto va escluso)

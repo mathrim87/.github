@@ -1,0 +1,37 @@
+---
+description: Badge versione accanto al titolo H1 nelle pagine admin Salus (standard FluentCRM Multi-Site Sync)
+alwaysApply: true
+---
+
+# Versione plugin nel titolo admin Salus
+
+Riferimento: **FluentCRM Multi-Site Sync** (`admin/views/settings-page.php`).
+
+Ogni plugin WordPress con pagina sotto **Salus** deve mostrare la versione corrente accanto al titolo `<h1>`, usando la costante `*_VERSION` del plugin (allineata all'header `Version:`).
+
+## Markup obbligatorio
+
+```php
+<h1>
+    <?php echo esc_html( get_admin_page_title() ); // oppure esc_html_e( 'Nome plugin', 'text-domain' ); ?>
+    <span class="salus-plugin-version" style="font-size: 0.8em; color: #646970; font-weight: normal;">
+        - v<?php echo esc_html( PLUGIN_PREFIX_VERSION ); ?>
+    </span>
+</h1>
+```
+
+- Classe CSS: **`salus-plugin-version`** (nome unico nello workspace).
+- Stile **inline** (non badge con sfondo): `font-size: 0.8em; color: #646970; font-weight: normal;`
+- Testo versione: **` - v`** + numero (es. `- v1.2.1`), con `esc_html()` sulla costante.
+- Non usare altri pattern (es. `cs-plugin-version` con background, classi `{plugin}-version` senza allineamento).
+
+## Quando applicare
+
+- Nuove pagine admin Salus (`Salus_Admin_Menu::register_submenu` o equivalente).
+- Plugin esistenti senza versione nel titolo: aggiungerla al primo intervento sulla pagina settings.
+- Non aggiungere versione su schermate secondarie, metabox o frontend.
+
+## Costante versione
+
+- Definire `define( 'PREFIX_VERSION', 'x.y.z' );` nel file principale del plugin.
+- Tenere sincronizzata con header `Version:` e bump secondo regola versioning del progetto.
