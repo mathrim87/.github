@@ -1,0 +1,9 @@
+{
+  "puc_version": "5.6",
+  "description": "File e cartelle condivisi copiati dal template in ogni plugin/salus/. Esclusi: class-*-update-checker.php. Allineamento: regola salus-plugins-standards.mdc.",
+  "shared_paths": [
+    "salus-admin-menu.php",
+    "salus-puc-manual-check.php",
+    "plugin-update-checker"
+  ]
+}

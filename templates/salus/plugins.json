@@ -1,0 +1,17 @@
+{
+  "description": "Plugin Salus con cartella salus/ alla root. Usato per propagazione template (agent AI).",
+  "plugins": [
+    "consent-solution",
+    "custom-post-views-counter",
+    "fluentcrm-multisite-sync",
+    "learndash-course-transfer",
+    "learndash-gestione-rinnovo-corsi",
+    "otp-email-login-form",
+    "serialized-search-replace",
+    "wc-back-in-stock",
+    "wc-custom-checkout-account-fields",
+    "wc-feedback",
+    "wc-marketing-tools",
+    "wc-sync-magazzino"
+  ]
+}

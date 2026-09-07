@@ -1,0 +1,31 @@
+---
+description: FluentCRM in produzione Salus — versione target e backlog compliance 3.x
+alwaysApply: true
+---
+
+# FluentCRM — produzione Salus
+
+## Versione in produzione
+
+Tutti e tre i siti Salus con FluentCRM sono su **FluentCRM 3.x**:
+
+| Sito | Dominio (riferimento) |
+|------|------------------------|
+| Corsi Salus | corsisalus.it |
+| Roberto Gava | robertogava.it |
+| Libri Omeopatia | libriomeopatia.it |
+
+Target produzione per integrazioni FluentCRM nel workspace: **FluentCRM 3.x** (non più 2.9 come default storico). Nei `docs/*-fluentcrm-integration.md` / `docs/fluentcrm-integration.md` usare questo target e aggiornare **Verificato il** quando si tocca l’integrazione.
+
+## Backlog (prossimo futuro — non urgente)
+
+Programmare un passaggio dedicato per rendere **plugin e snippet** pienamente compliant con FluentCRM 3.x, ad esempio:
+
+- Migrare hook legacy `fluentcrm_*` → `fluent_crm/` dove documentato (attenzione all’ordine parametri invertito su alcuni hook tag)
+- Allineare chiamate API PHP (`createOrUpdate`, liste/tag, force status, ecc.) alle convenzioni 3.x
+- Aggiornare docs di integrazione e README che citano ancora 2.9+ / legacy come target primario
+- Verificare snippet one-off nel repo `snippet` e integrazioni sparse (sync multi-sito, Consent Solution, WCBIS, LDGRC, …)
+
+Non fare refactor massivo “per compliance” in task non correlati: solo quando l’utente chiede esplicitamente questo lavoro o quando si tocca già quell’integrazione.
+
+Riferimenti utili: [Getting Started](https://developers.fluentcrm.com/getting-started/), [Contact Hooks](https://developers.fluentcrm.com/hooks/actions/contacts.html), [Changelog FluentCRM](https://fluentcrm.com/docs/change-log). Promemoria hook già nel README di `fluentcrm-multisite-sync`.

@@ -1,0 +1,48 @@
+<?php
+/**
+ * Plugin Update Checker - Aggiornamenti da GitHub
+ *
+ * Generare da class-update-checker.php.stub sostituendo i placeholder:
+ *   {{CLASS_NAME}}           es. WCMT_Update_Checker
+ *   {{PREFIX}}               es. WCMT (costante *_PLUGIN_DIR, *_PLUGIN_FILE, *_DISABLE_UPDATE_CHECK)
+ *   {{PACKAGE}}              es. WC_Marketing_Tools (@package)
+ *   {{GITHUB_REPO}}          es. mathrim87/wc-marketing-tools
+ *   {{PUC_SLUG}}             es. wc-marketing-tools (slug buildUpdateChecker)
+ *
+ * @package {{PACKAGE}}
+ */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
+
+class {{CLASS_NAME}} {
+
+	public static function init() {
+		if ( ! is_admin() || defined( '{{PREFIX}}_DISABLE_UPDATE_CHECK' ) ) {
+			return;
+		}
+
+		$puc_path = {{PREFIX}}_PLUGIN_DIR . 'salus/plugin-update-checker/load-v5p6.php';
+		if ( ! file_exists( $puc_path ) ) {
+			return;
+		}
+
+		require $puc_path;
+
+		$checker = \YahnisElsts\PluginUpdateChecker\v5\PucFactory::buildUpdateChecker(
+			'https://github.com/{{GITHUB_REPO}}',
+			{{PREFIX}}_PLUGIN_FILE,
+			'{{PUC_SLUG}}'
+		);
+
+		$checker->getVcsApi()->enableReleaseAssets();
+
+		require_once __DIR__ . '/salus-puc-manual-check.php';
+		Salus_Puc_Manual_Check::add_update_now_link( '{{PUC_SLUG}}', {{PREFIX}}_PLUGIN_FILE );
+
+		if ( defined( 'GITHUB_TOKEN' ) && GITHUB_TOKEN ) {
+			$checker->setAuthentication( GITHUB_TOKEN );
+		}
+	}
+}

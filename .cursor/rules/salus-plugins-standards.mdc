@@ -14,12 +14,27 @@ Regole satellite nello stesso folder `.github/.cursor/rules/`:
 - `salus-admin-version.mdc` — markup versione nel titolo H1 admin
 - `wordpress-remote-debug.mdc` — debug su hosting remoto
 - `old-folders.mdc` — esclusione cartelle OLD
+- `fluentcrm-production.mdc` — FluentCRM 3.x sui tre siti + backlog compliance
+- `staging-browser-verify.mdc` — verificare UI nel browser Cursor; staging via FTP
 
-## Menu Salus
+## Menu Salus e cartella `salus/`
 
-- Usare `Salus_Admin_Menu::register_submenu()` (helper condiviso nel plugin o in `includes/salus-admin-menu.php`)
+- Usare `Salus_Admin_Menu::register_submenu()` (helper in `salus/salus-admin-menu.php` alla root del plugin)
+- La cartella Salus va **sempre** in **`salus/`** alla root del plugin, mai in `includes/salus/`
+- **Template condiviso (sorgente unica):** `.github/templates/salus/` — vedi `templates/salus/TEMPLATE.md` e `manifest.json`
+- **Registry plugin:** `.github/templates/salus/plugins.json`
+- File **specifici del plugin** (non copiati dal template): `salus/class-{prefix}-update-checker.php` — generare da `class-update-checker.php.stub`
 - Non creare menu top-level Salus duplicati
 - Capability tipica: `manage_options`
+
+### Allineamento template (agent AI)
+
+Quando si tocca PUC o helper Salus condivisi:
+
+1. Editare prima `.github/templates/salus/` (+ `manifest.json` se cambia PUC)
+2. Propagare ai repo in `plugins.json` copiando solo i path in `manifest.json` → `{plugin}/salus/`
+3. Non sovrascrivere `class-*-update-checker.php`; verificare bootstrap con path `salus/` (non `includes/salus/`)
+4. Nuovo plugin: copiare template, generare update checker dallo stub, registrare in `plugins.json`
 
 ## Versione nel titolo admin
 
@@ -50,7 +65,7 @@ Obbligatorio se il plugin usa hook, filtri, funzioni o classi del plugin esterno
 - File `docs/{plugin}-integration.md` nel repo del plugin
 - Tabella con colonne: Tipo, Nome, Uso, File, Since, **Verificato il**, Target produzione, Note
 - Preferire API documentate + `function_exists()` / fallback
-- Documentare la versione target in produzione (es. LearnDash 5.1.6)
+- Documentare la versione target in produzione (es. LearnDash 5.1.6; FluentCRM → vedi `fluentcrm-production.mdc`)
 - Aggiornare `Verificato il` quando si cambia versione target o si tocca l'integrazione
 
 Opzionale se c'è solo `is_plugin_active()` senza API/hook del plugin esterno.

@@ -1,0 +1,22 @@
+---
+description: Verificare le modifiche UI nel browser Cursor se aperto; staging è remoto (FTP)
+alwaysApply: true
+---
+
+# Verifica UI su staging (browser Cursor + FTP)
+
+Il codice gira su **hosting remoto**. Le modifiche locali **non** compaiono sul sito finché Michele non le carica via **FTP** (flusso usuale, più veloce del deploy Git).
+
+## Se c’è una scheda browser Cursor aperta
+
+Dopo ogni modifica CSS/HTML/PHP che cambia il frontend:
+
+1. Elencare le tab (`browser_tabs` list) e usare quella già aperta (non navigare via se è già sulla pagina giusta).
+2. Ricaricare la pagina e leggere DOM/stili computed (altezza, classi, `rows`, colori, margini).
+3. Confrontare con l’atteso. Se lo staging **non** ha ancora il file FTP, dirlo esplicitamente: *in locale è X, sul sito è ancora Y*.
+4. Anteprima via inject CSS/DOM solo per confermare il valore; non spacciare l’inject per deploy.
+
+## Cosa non fare
+
+- Dare per applicata una modifica PHP/CSS locale senza aver controllato il browser (se presente).
+- Aspettarsi che `rows` o CSS locale si vedano su staging senza FTP.

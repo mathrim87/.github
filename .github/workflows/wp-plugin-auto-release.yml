@@ -13,6 +13,8 @@
 #      contents: write
 #    jobs:
 #      call-reusable:
+#        permissions:
+#          contents: write   # obbligatorio sul job: i permessi workflow-level NON passano al reusable
 #        uses: mathrim87/.github/.github/workflows/wp-plugin-auto-release.yml@main
 #        with:
 #          plugin_main_file: PERCORSO_DEL_FILE_PLUGIN.php   # es: otp-email.php
