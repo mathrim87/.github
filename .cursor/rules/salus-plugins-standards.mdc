@@ -16,6 +16,7 @@ Regole satellite nello stesso folder `.github/.cursor/rules/`:
 - `old-folders.mdc` — esclusione cartelle OLD
 - `fluentcrm-production.mdc` — FluentCRM 3.x sui tre siti + backlog compliance
 - `staging-browser-verify.mdc` — verificare UI nel browser Cursor; staging via FTP
+- `salus-sites-config.mdc` — schede stack dei tre siti in `sites/*.md` (leggere/aggiornare sempre)
 
 ## Menu Salus e cartella `salus/`
 

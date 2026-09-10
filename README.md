@@ -17,3 +17,7 @@ Sorgente unica per la cartella `salus/` copiata in ogni plugin: [templates/salus
 ## Regole Cursor
 
 In `.cursor/rules/` — standard condivisi workspace (`salus-plugins-standards.mdc`, ecc.)
+
+## Configurazione siti
+
+Schede vive dei tre siti di produzione: [sites/README.md](sites/README.md) (`corsisalus.it`, `libriomeopatia.it`, `robertogava.it`). Regola: `salus-sites-config.mdc`.

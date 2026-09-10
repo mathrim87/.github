@@ -1,0 +1,34 @@
+---
+description: Configurazione viva dei tre siti Salus — leggere e aggiornare sempre i file in sites/
+alwaysApply: true
+---
+
+# Configurazione siti Salus
+
+Schede in **`.github/sites/`**: `corsisalus.it.md`, `libriomeopatia.it.md`, `robertogava.it.md` — indice `sites/README.md`.
+
+## Obblighi agent
+
+1. **Prima** di lavorare su un sito (o plugin/snippet tipico): **leggere** il relativo `.md`.
+2. **Dopo** modifiche rilevanti alla stack: **aggiornare** la scheda (plugin, snippet, versioni, note, changelog + date).
+3. Se non è chiaro il sito, chiedere o inferire da repo/snippet.
+4. Non inventare versioni: «da verificare» finché non confermate.
+
+## Refresh da WordPress REST (`/wp-json/`)
+
+Usare **periodicamente** (o all’inizio di un lavoro su quel sito se la scheda è stale) gli index pubblici:
+
+| Sito | URL |
+|------|-----|
+| corsisalus.it | `https://www.corsisalus.it/wp-json/` |
+| libriomeopatia.it | `https://www.libriomeopatia.it/wp-json/` |
+| robertogava.it | `https://www.robertogava.it/wp-json/` (obbligatorio `www`; senza → 404) |
+
+Dal JSON aggiornare soprattutto `name` / `url` / `home` e l’array **`namespaces`** → sezioni Stack e «Plugin rilevati da REST». Segnare **Ultimo refresh wp-json**. Ignorare il dump enorme di `routes` se non serve.
+
+REST **non** sostituisce i plugin senza namespace (OTP, Consent Solution, molti WC custom): restano nella sezione workspace.
+
+## Cosa non duplicare
+
+Dettaglio API/hook → `docs/*-integration.md` nei plugin.  
+Qui: **cosa gira sul sito** e **dove sta il codice**.

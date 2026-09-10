@@ -9,11 +9,11 @@ alwaysApply: true
 
 Tutti e tre i siti Salus con FluentCRM sono su **FluentCRM 3.x**:
 
-| Sito | Dominio (riferimento) |
-|------|------------------------|
-| Corsi Salus | corsisalus.it |
-| Roberto Gava | robertogava.it |
-| Libri Omeopatia | libriomeopatia.it |
+| Sito | Dominio (riferimento) | Scheda config |
+|------|------------------------|---------------|
+| Corsi Salus | corsisalus.it | `sites/corsisalus.it.md` |
+| Roberto Gava | robertogava.it | `sites/robertogava.it.md` |
+| Libri Omeopatia | libriomeopatia.it | `sites/libriomeopatia.it.md` |
 
 Target produzione per integrazioni FluentCRM nel workspace: **FluentCRM 3.x** (non più 2.9 come default storico). Nei `docs/*-fluentcrm-integration.md` / `docs/fluentcrm-integration.md` usare questo target e aggiornare **Verificato il** quando si tocca l’integrazione.
 
