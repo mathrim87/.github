@@ -3,7 +3,7 @@
 **Ruolo:** piattaforma corsi (LearnDash + WooCommerce) — Corsi Salus.  
 **URL:** https://www.corsisalus.it  
 **REST index:** https://www.corsisalus.it/wp-json/  
-**Ultimo aggiornamento doc:** 2026-09-10  
+**Ultimo aggiornamento doc:** 2026-09-10 (schema Course List)  
 **Ultimo refresh wp-json:** 2026-09-10
 
 > Living doc: aggiornare quando si tocca questo sito. Periodicamente rieseguire fetch di `/wp-json/` (vedi `sites/README.md`).
@@ -99,6 +99,7 @@ Cartella dedicata: [snippet/corsisalus/](../snippet/corsisalus/)
 | `wc-webhook-ordine-trigger-manuale.php` | Webhook Integrately |
 | `wc-webhook-integra-payload-pys-meta.php` | Payload webhook |
 | `wc-log-webhooks-delivery.php` | Log webhook |
+| `yoast-schema-course-list.php` | Schema Course List **v1.5.1**: ItemList shop (13); Course con prezzo **IVA inclusa** (`wc_get_price_including_tax` + `valueAddedTaxIncluded`) |
 
 ### Snippet condivisi rilevanti
 
@@ -117,6 +118,7 @@ Cartella dedicata: [snippet/corsisalus/](../snippet/corsisalus/)
 - Deploy tipico: modifiche locali → FTP su hosting remoto (vedi `staging-browser-verify.mdc`).
 - Area account / OTP: vedi README di `otp-email-login-form`.
 - Index REST molto grande: leggere soprattutto `name` / `namespaces` (non tutto il dump `routes`).
+- **Schema SEO (Course List):** snippet `yoast-schema-course-list.php` **v1.5.0** — `ItemList` allineato al loop shop (cat. `corso` + `exclude-from-catalog`). Dopo deploy: `?nonitro` per verificare senza NitroPack.
 
 ---
 
@@ -124,5 +126,8 @@ Cartella dedicata: [snippet/corsisalus/](../snippet/corsisalus/)
 
 | Data | Modifica |
 |------|----------|
+| 2026-09-10 | Schema Course List v1.5.1: Offer con prezzo IVA inclusa + valueAddedTaxIncluded. |
+| 2026-09-10 | Schema Course List v1.5.0: ItemList = 13 prodotti shop (visibility WC), non più 18. |
+| 2026-09-10 | Snippet `yoast-schema-course-list.php`: Course List (ItemList catalogo + Course landing); doc operativa schema vs redirect prodotto. |
 | 2026-09-10 | Creazione doc iniziale da mapping workspace (plugin + snippet noti). |
 | 2026-09-10 | Refresh da `https://www.corsisalus.it/wp-json/`: stack + tabella namespaces. |
