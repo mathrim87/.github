@@ -91,7 +91,6 @@ Cartella dedicata: [snippet/corsisalus/](../snippet/corsisalus/)
 | `black-friday-2024.php` | Promo stagionale |
 | `debug-disattivazioni-plugin.php` | Debug |
 | `wc-iva-estero-privati.php` | IVA estero |
-| `wc-aggiorna-formato-campi-checkout.php` | Formato checkout |
 | `wc-disable-error-messages.php` | Messaggi errore WC |
 | `wc-set-delay-period-on-processing-status.php` | Delay processing |
 | `wc-invio-email-fattura-elettronica.php` | Email FE |
@@ -107,7 +106,7 @@ Cartella dedicata: [snippet/corsisalus/](../snippet/corsisalus/)
 |------|------|
 | [snippet/learndash/](../snippet/learndash/) | Es. `shortcode-course-author-for-certificates.php` |
 | [snippet/woocommerce/](../snippet/woocommerce/) | Utility WC riusabili — *confermare quali attivi qui* |
-| [snippet/wordpress/](../snippet/wordpress/) | Sicurezza / notifiche admin |
+| [snippet/wordpress/](../snippet/wordpress/) | Sicurezza / notifiche admin; `wp-normalizza-formato-anagrafica.php` **attivo** (Title Case nome/cognome + email minuscolo + tel/P.IVA: WP, WC, Fluent Forms, FluentCRM) |
 | [snippet/consent-magic/](../snippet/consent-magic/) | Banner / MU ajax — *da confermare* |
 
 ---
@@ -126,6 +125,7 @@ Cartella dedicata: [snippet/corsisalus/](../snippet/corsisalus/)
 
 | Data | Modifica |
 |------|----------|
+| 2026-09-10 | Attivato su CS lo snippet condiviso `wordpress/wp-normalizza-formato-anagrafica.php` (normalizzazione nome/email/tel/P.IVA). |
 | 2026-09-10 | Schema Course List v1.5.1: Offer con prezzo IVA inclusa + valueAddedTaxIncluded. |
 | 2026-09-10 | Schema Course List v1.5.0: ItemList = 13 prodotti shop (visibility WC), non più 18. |
 | 2026-09-10 | Snippet `yoast-schema-course-list.php`: Course List (ItemList catalogo + Course landing); doc operativa schema vs redirect prodotto. |

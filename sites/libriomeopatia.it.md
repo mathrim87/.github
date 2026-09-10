@@ -91,7 +91,7 @@ Cartella dedicata: [snippet/libri-omeopatia/](../snippet/libri-omeopatia/) (molt
 | Path | Note |
 |------|------|
 | [snippet/woocommerce/](../snippet/woocommerce/) | Utility WC (analytics, stock column, blocca email, …) — *confermare attivi* |
-| [snippet/wordpress/](../snippet/wordpress/) | Es. `sicurezza.php` (nota LO nel commento) |
+| [snippet/wordpress/](../snippet/wordpress/) | Es. `sicurezza.php`; `wp-normalizza-formato-anagrafica.php` **attivo** (Title Case nome/cognome + email minuscolo + tel/P.IVA: WP, WC, Fluent Forms, FluentCRM) |
 | [snippet/consent-magic/](../snippet/consent-magic/) | Banner / MU ajax |
 
 ---
@@ -109,5 +109,6 @@ Cartella dedicata: [snippet/libri-omeopatia/](../snippet/libri-omeopatia/) (molt
 
 | Data | Modifica |
 |------|----------|
+| 2026-09-10 | Attivato su LO lo snippet condiviso `wordpress/wp-normalizza-formato-anagrafica.php`. |
 | 2026-09-10 | Creazione doc iniziale da mapping workspace (plugin + aree snippet). |
 | 2026-09-10 | Refresh da `https://www.libriomeopatia.it/wp-json/`: stack + namespaces (`cpvc`, Rank Math, Hello Elementor, …). |

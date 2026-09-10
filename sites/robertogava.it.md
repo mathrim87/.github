@@ -77,7 +77,7 @@ Cartella dedicata: [snippet/robertogava/](../snippet/robertogava/)
 | Path | Note |
 |------|------|
 | [snippet/consent-magic/](../snippet/consent-magic/) | `mu-salus-admin-ajax-json.php` (nota: submission Fluent su robertogava); `consent-magic-banner.php` |
-| [snippet/wordpress/](../snippet/wordpress/) | Sicurezza / notifiche admin — *da confermare* |
+| [snippet/wordpress/](../snippet/wordpress/) | Sicurezza / notifiche admin; `wp-normalizza-formato-anagrafica.php` **attivo** (Title Case nome/cognome + email minuscolo + tel/P.IVA: WP, WC, Fluent Forms, FluentCRM) |
 
 ---
 
@@ -94,5 +94,6 @@ Cartella dedicata: [snippet/robertogava/](../snippet/robertogava/)
 
 | Data | Modifica |
 |------|----------|
+| 2026-09-10 | Attivato su RG lo snippet condiviso `wordpress/wp-normalizza-formato-anagrafica.php`. |
 | 2026-09-10 | Creazione doc iniziale da mapping workspace (plugin + snippet noti). |
 | 2026-09-10 | Refresh da `https://www.robertogava.it/wp-json/`: stack, namespaces, nota 404 senza www, path `/wp`. |
