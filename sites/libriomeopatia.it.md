@@ -57,7 +57,7 @@
 | WC Back In Stock | [wc-back-in-stock](../wc-back-in-stock/) | Avvisi disponibilità — *no namespace REST tipico* |
 | WC Marketing Tools | [wc-marketing-tools](../wc-marketing-tools/) | Tool marketing WC |
 | WC Feedback | [wc-feedback](../wc-feedback/) | Feedback ordini; copy default LO |
-| WC Sync Magazzino | [wc-sync-magazzino](../wc-sync-magazzino/) | Import stock CSV |
+| WC Sync Magazzino | [wc-sync-magazzino](../wc-sync-magazzino/) | Import stock CSV; tab Amazon export TSV (`sku`/`quantity`) v1.3.0 |
 | Custom Post Views Counter | [custom-post-views-counter](../custom-post-views-counter/) | Confermato attivo via `cpvc/v1` |
 | Consent Solution | [consent-solution](../consent-solution/) | Policy + registro ordini/form |
 | FluentCRM Multi-Site Sync | [fluentcrm-multisite-sync](../fluentcrm-multisite-sync/) | Confermato attivo via `fluentcrm-sync/v1` |
