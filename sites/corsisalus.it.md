@@ -3,7 +3,7 @@
 **Ruolo:** piattaforma corsi (LearnDash + WooCommerce) — Corsi Salus.  
 **URL:** https://www.corsisalus.it  
 **REST index:** https://www.corsisalus.it/wp-json/  
-**Ultimo aggiornamento doc:** 2026-09-10 (schema Course List)  
+**Ultimo aggiornamento doc:** 2026-09-22  
 **Ultimo refresh wp-json:** 2026-09-10
 
 > Living doc: aggiornare quando si tocca questo sito. Periodicamente rieseguire fetch di `/wp-json/` (vedi `sites/README.md`).
@@ -62,8 +62,9 @@ Indicano plugin **attivi** che registrano route (non è l’elenco completo dei 
 | OTP Email Login Form | [otp-email-login-form](../otp-email-login-form/) | Login OTP; URL hardcoded su corsisalus.it — *no namespace REST dedicato* |
 | LearnDash Gestione Rinnovo Corsi | [learndash-gestione-rinnovo-corsi](../learndash-gestione-rinnovo-corsi/) | Scadenza accesso + rinnovo scontato |
 | LearnDash Course Transfer | [learndash-course-transfer](../learndash-course-transfer/) | Trasferimento studenti tra corsi LD |
-| FluentCRM Multi-Site Sync | [fluentcrm-multisite-sync](../fluentcrm-multisite-sync/) | Confermato attivo via `fluentcrm-sync/v1` |
+| FluentCRM Multi-Site Sync | [fluentcrm-multisite-sync](../fluentcrm-multisite-sync/) | Confermato attivo via `fluentcrm-sync/v1`; tab Gruppi (SKU Autori/Editori + filtro inbound) e backfill contatti AS (v4.5.x) |
 | Consent Solution | [consent-solution](../consent-solution/) | Policy / consensi — *no namespace REST tipico* |
+| Quiz Omeopatia | [quiz-omeopatia](../quiz-omeopatia/) | Shortcode questionario repertorizzazione (corso febbre) v1.1.3 — *no `salus/` / no REST* |
 | WC Custom Checkout Account Fields | [wc-custom-checkout-account-fields](../wc-custom-checkout-account-fields/) | Campi checkout IT — *da confermare se attivo* |
 | Serialized Search Replace | [serialized-search-replace](../serialized-search-replace/) | Utility admin — *uso ad hoc* |
 
@@ -83,7 +84,7 @@ Cartella dedicata: [snippet/corsisalus/](../snippet/corsisalus/)
 | `disable-repeated-purchase.php` | Blocco riacquisto |
 | `hide-plugins-by-role.php` | Nasconde plugin per ruolo |
 | `user-role-editor.php` | Ruoli |
-| `log-last-login.php` | Ultimo login |
+| `log-last-login.php` | Ultimo login sito + accessi pagine corso LD in profilo utente (2026-09-11) |
 | `telegram-notifications.php` | Notifiche Telegram |
 | `twitter-tracking-code.php` | Tracking |
 | `custom-image-size.php` | Image size |
@@ -113,11 +114,12 @@ Cartella dedicata: [snippet/corsisalus/](../snippet/corsisalus/)
 
 ## Integrazioni / note operative
 
-- FluentCRM multi-sito: sync con libriomeopatia.it e robertogava.it (`fluentcrm-sync/v1` presente).
+- FluentCRM multi-sito: sync con libriomeopatia.it e robertogava.it (`fluentcrm-sync/v1` presente). Tab Gruppi: sync elenco SKU verso destinazioni + filtro inbound OR con keyword; backfill contatti per gruppo via Action Scheduler.
 - Deploy tipico: modifiche locali → FTP su hosting remoto (vedi `staging-browser-verify.mdc`).
 - Area account / OTP: vedi README di `otp-email-login-form`.
+- Quiz omeopatia: repo [quiz-omeopatia](../quiz-omeopatia/) (shortcode su CS).
 - Index REST molto grande: leggere soprattutto `name` / `namespaces` (non tutto il dump `routes`).
-- **Schema SEO (Course List):** snippet `yoast-schema-course-list.php` **v1.5.0** — `ItemList` allineato al loop shop (cat. `corso` + `exclude-from-catalog`). Dopo deploy: `?nonitro` per verificare senza NitroPack.
+- **Schema SEO (Course List):** snippet `yoast-schema-course-list.php` **v1.5.1** — `ItemList` allineato al loop shop (cat. `corso` + `exclude-from-catalog`); Offer con prezzo IVA inclusa. Dopo deploy: `?nonitro` per verificare senza NitroPack.
 
 ---
 
@@ -125,6 +127,10 @@ Cartella dedicata: [snippet/corsisalus/](../snippet/corsisalus/)
 
 | Data | Modifica |
 |------|----------|
+| 2026-09-22 | Doc: aggiunto repo `quiz-omeopatia`; FluentCRM Multi-Site Sync v4.5.x (Gruppi + backfill); `log-last-login.php` accessi corsi; nota schema Course List allineata a v1.5.1. |
+| 2026-09-17 | FluentCRM Multi-Site Sync 4.5.2: backfill contatti per gruppo via Action Scheduler. |
+| 2026-09-16 | FluentCRM Multi-Site Sync 4.5.0/4.5.1: tab Gruppi (SKU catalogo Autori/Editori, filtro inbound, UI checklist). |
+| 2026-09-11 | Snippet `log-last-login.php`: traccia anche visite alle pagine corso LearnDash nel profilo utente. |
 | 2026-09-10 | Attivato su CS lo snippet condiviso `wordpress/wp-normalizza-formato-anagrafica.php` (normalizzazione nome/email/tel/P.IVA). |
 | 2026-09-10 | Schema Course List v1.5.1: Offer con prezzo IVA inclusa + valueAddedTaxIncluded. |
 | 2026-09-10 | Schema Course List v1.5.0: ItemList = 13 prodotti shop (visibility WC), non più 18. |

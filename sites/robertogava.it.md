@@ -5,7 +5,7 @@
 **WordPress path:** installazione sotto `/wp` (`url` REST = `https://www.robertogava.it/wp`)  
 **REST index:** https://www.robertogava.it/wp-json/  
 **Nota URL:** `https://robertogava.it/wp-json/` → **404**; usare sempre `www`.  
-**Ultimo aggiornamento doc:** 2026-09-10  
+**Ultimo aggiornamento doc:** 2026-09-22  
 **Ultimo refresh wp-json:** 2026-09-10
 
 > Living doc: aggiornare quando si tocca questo sito. Periodicamente rieseguire fetch di `/wp-json/` (vedi `sites/README.md`).
@@ -55,7 +55,7 @@ Nessun namespace WooCommerce / LearnDash: sito non e-commerce/corsi lato REST.
 
 | Plugin | Repo | Note |
 |--------|------|------|
-| FluentCRM Multi-Site Sync | [fluentcrm-multisite-sync](../fluentcrm-multisite-sync/) | Confermato attivo via `fluentcrm-sync/v1` |
+| FluentCRM Multi-Site Sync | [fluentcrm-multisite-sync](../fluentcrm-multisite-sync/) | Confermato attivo via `fluentcrm-sync/v1`; tab Gruppi (SKU Autori/Editori + filtro inbound) e backfill contatti AS (v4.5.x) |
 | Consent Solution | [consent-solution](../consent-solution/) | Registro form Fluent — *no namespace REST tipico* |
 | Serialized Search Replace | [serialized-search-replace](../serialized-search-replace/) | Utility admin — *uso ad hoc* |
 
@@ -83,7 +83,7 @@ Cartella dedicata: [snippet/robertogava/](../snippet/robertogava/)
 
 ## Integrazioni / note operative
 
-- FluentCRM multi-sito: sync con corsisalus.it e libriomeopatia.it.
+- FluentCRM multi-sito: sync con corsisalus.it e libriomeopatia.it. Tab Gruppi: sync elenco SKU verso destinazioni + filtro inbound OR con keyword; backfill contatti per gruppo via Action Scheduler (tipicamente i gruppi catalogo partono da LO/CS).
 - Attention su form Fluent + Consent Magic (admin-ajax JSON MU).
 - Deploy tipico: FTP su hosting remoto.
 - Sempre usare URL con `www` per REST.
@@ -94,6 +94,9 @@ Cartella dedicata: [snippet/robertogava/](../snippet/robertogava/)
 
 | Data | Modifica |
 |------|----------|
+| 2026-09-22 | Doc: FluentCRM Multi-Site Sync v4.5.x (Gruppi + backfill contatti). |
+| 2026-09-17 | FluentCRM Multi-Site Sync 4.5.2: backfill contatti per gruppo via Action Scheduler. |
+| 2026-09-16 | FluentCRM Multi-Site Sync 4.5.0/4.5.1: tab Gruppi (SKU catalogo Autori/Editori, filtro inbound, UI checklist). |
 | 2026-09-10 | Attivato su RG lo snippet condiviso `wordpress/wp-normalizza-formato-anagrafica.php`. |
 | 2026-09-10 | Creazione doc iniziale da mapping workspace (plugin + snippet noti). |
 | 2026-09-10 | Refresh da `https://www.robertogava.it/wp-json/`: stack, namespaces, nota 404 senza www, path `/wp`. |
