@@ -102,7 +102,7 @@ Cartella dedicata: [snippet/libri-omeopatia/](../snippet/libri-omeopatia/) (molt
 - Consent Solution + WC Feedback: audit form custom `wcfb` (vedi docs plugin).
 - Consent Solution + Integrately: Facebook Lead Ads resta su Integrately (FluentCRM); secondo step webhook verso `POST /wp-json/consent-solution/v1/webhook/consent` per lo snapshot nel tab Consensi. In admin: provider `integrately`, ID form = Form Id Meta.
 - Spedizioni: se due+ rate a costo 0 «Spedizione Gratis», ne resta una (preferisce coupon `free_shipping`); metodi a pagamento (es. Express) restano visibili.
-- Schema Rank Math: fix GSC 2026-09-14 (`hasMerchantReturnPolicy` su offers + allineamento `review.author.name` allo shortcode recensioni).
+- Schema Rank Math: snippet `rankmath-schema-libri-omeopatia.php` 1.0.6 (Product/Book, prezzo IVA inclusa, BreadcrumbList sulle schede prodotto, return policy, autori recensioni).
 - Deploy tipico: FTP su hosting remoto.
 - Index REST grande: usare `namespaces`, non scaricare/analizzare tutto `routes`.
 
@@ -112,6 +112,7 @@ Cartella dedicata: [snippet/libri-omeopatia/](../snippet/libri-omeopatia/) (molt
 
 | Data | Modifica |
 |------|----------|
+| 2026-09-23 | Snippet schema Rank Math 1.0.6: BreadcrumbList sulle schede prodotto (briciole WooCommerce). |
 | 2026-09-22 | Doc: FluentCRM Multi-Site Sync v4.5.x (Gruppi + backfill); spedizioni dedupe Gratis; schema Rank Math GSC. |
 | 2026-09-18 | Consent Solution: webhook Integrately per snapshot consenso Lead Ads (`consent-solution/v1/webhook/consent`). |
 | 2026-09-17 | Snippet spedizioni: deduplica rate «Spedizione Gratis» duplicate (lascia Express / metodi a pagamento). |
