@@ -1,0 +1,20 @@
+---
+description: Controllo mensile degli aggiornamenti delle librerie di terze parti incluse nei plugin
+alwaysApply: true
+---
+
+# Librerie incluse — controllo mensile
+
+Ultimo controllo: 2026-10-02
+
+All'inizio di una sessione, se questa data ha almeno 30 giorni, controlla le librerie di terze parti distribuite dentro i plugin. Aggiorna la data anche se non c'è nulla di nuovo. Non aggiornare i pacchetti da solo: riporta versione attuale, ultima stabile e se il salto è compatibile col flusso del plugin.
+
+Versioni attuali:
+
+- blocco `require` di ogni `composer.json` nella root di un plugin
+- `consent-solution/vendor/README.md` per lo stack PDF
+- header `Plugin Update Checker Library` in `salus/plugin-update-checker/plugin-update-checker.php` (stessa libreria copiata in più plugin: conta una volta)
+
+Ultima stabile: release GitHub o Packagist, non il branch di sviluppo.
+
+Un aggiornamento di Dompdf si fa insieme a `dompdf/php-font-lib` e `dompdf/php-svg-lib`. `sabberworm/php-css-parser` 9.x richiede `thecodingmachine/safe` nella serie compatibile col PHP dichiarato dal plugin. Poi si rigenera un PDF policy con immagini, elenchi e tabelle prima di considerarlo pronto.

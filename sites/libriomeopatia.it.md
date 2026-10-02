@@ -3,7 +3,7 @@
 **Ruolo:** e-commerce libri (WooCommerce) — Libri Omeopatia.  
 **URL:** https://www.libriomeopatia.it (anche https://libriomeopatia.it)  
 **REST index:** https://www.libriomeopatia.it/wp-json/  
-**Ultimo aggiornamento doc:** 2026-09-22  
+**Ultimo aggiornamento doc:** 2026-10-02  
 **Ultimo refresh wp-json:** 2026-09-10
 
 > Living doc: aggiornare quando si tocca questo sito. Periodicamente rieseguire fetch di `/wp-json/` (vedi `sites/README.md`).
@@ -26,6 +26,26 @@
 | WP All Import | `wp-all-import/v1` | 2026-09-10 |
 | Meta Box | `meta-box/v1`, `mbb`, `mb-relationships` | 2026-09-10 |
 | Hosting | SiteGround (`siteground-optimizer`, `sg-security`, `siteground-settings`) | 2026-09-10 |
+| PHP | **8.2.34** (64 bit), SAPI `apache2handler`. Limiti in «Runtime PHP» | 2026-10-02 |
+| Web server | Apache su Linux 6.12.91-MCIclouder1135-C9 x86_64 | 2026-10-02 |
+
+### Runtime PHP (Site Health, 2026-10-02)
+
+| Parametro | Valore |
+|-----------|--------|
+| `max_input_vars` | **10000** |
+| `max_execution_time` | 120 |
+| `max_input_time` | 120 |
+| `memory_limit` | 768M |
+| `upload_max_filesize` | 256M |
+| `post_max_size` | 256M |
+| cURL | 8.15.0 OpenSSL/3.5.8 |
+| Suhosin | no |
+| Imagick | no |
+| Opcode cache | disabilitata |
+| Permalink pretty | sì |
+| `.htaccess` | regole custom |
+| `robots.txt` | file statico (WordPress non lo serve in dinamico) |
 
 ---
 
@@ -112,6 +132,7 @@ Cartella dedicata: [snippet/libri-omeopatia/](../snippet/libri-omeopatia/) (molt
 
 | Data | Modifica |
 |------|----------|
+| 2026-10-02 | Site Health: PHP 8.2.34, Apache, `max_input_vars` 10000, memoria 768M. |
 | 2026-09-23 | Snippet schema Rank Math 1.0.6: BreadcrumbList sulle schede prodotto (briciole WooCommerce). |
 | 2026-09-22 | Doc: FluentCRM Multi-Site Sync v4.5.x (Gruppi + backfill); spedizioni dedupe Gratis; schema Rank Math GSC. |
 | 2026-09-18 | Consent Solution: webhook Integrately per snapshot consenso Lead Ads (`consent-solution/v1/webhook/consent`). |
