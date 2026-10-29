@@ -12,6 +12,7 @@
     "wc-custom-checkout-account-fields",
     "wc-feedback",
     "wc-marketing-tools",
+    "wc-orders-google-sheet",
     "wc-sync-magazzino"
   ]
 }

@@ -3,7 +3,7 @@
 **Ruolo:** e-commerce libri (WooCommerce) — Libri Omeopatia.  
 **URL:** https://www.libriomeopatia.it (anche https://libriomeopatia.it)  
 **REST index:** https://www.libriomeopatia.it/wp-json/  
-**Ultimo aggiornamento doc:** 2026-10-02  
+**Ultimo aggiornamento doc:** 2026-10-29  
 **Ultimo refresh wp-json:** 2026-09-10
 
 > Living doc: aggiornare quando si tocca questo sito. Periodicamente rieseguire fetch di `/wp-json/` (vedi `sites/README.md`).
@@ -17,7 +17,7 @@
 | WordPress | REST ok; versione numerica non in index pubblico | 2026-09-10 |
 | Site name (REST) | `LibriOmeopatia.it` | 2026-09-10 |
 | WooCommerce | namespaces `wc/v3`, `wc-admin`, `wc/store`, … — docs plugin: **11.0.1** | 2026-09-10 |
-| HPOS WooCommerce | attivo (citato in wc-marketing-tools / wc-feedback) | — |
+| HPOS WooCommerce | **attivo** | 2026-10-29 |
 | FluentCRM | `fluent-crm`, `fluent-crm/v1`, `fluent-crm/v2` — target **3.x** | 2026-09-10 |
 | Fluent Forms / SMTP | `fluentform/v1`, `fluent-smtp` | 2026-09-10 |
 | Theme | Hello Elementor (`elementor-hello-elementor/v1`) — non GeneratePress | 2026-09-10 |
@@ -78,6 +78,7 @@
 | WC Marketing Tools | [wc-marketing-tools](../wc-marketing-tools/) | Tool marketing WC |
 | WC Feedback | [wc-feedback](../wc-feedback/) | Feedback ordini; copy default LO |
 | WC Sync Magazzino | [wc-sync-magazzino](../wc-sync-magazzino/) | Import stock CSV; tab Amazon export PriceAndQuantity v1.3.1 |
+| WC Orders Google Sheet | [wc-orders-google-sheet](../wc-orders-google-sheet/) | Ordini completati verso Google Sheet. Repo pronta, **non installato**. Compatibile con HPOS |
 | Custom Post Views Counter | [custom-post-views-counter](../custom-post-views-counter/) | Confermato attivo via `cpvc/v1` |
 | Consent Solution | [consent-solution](../consent-solution/) | Policy + registro ordini/form; webhook Integrately (`consent-solution/v1/webhook/consent`) per snapshot Lead Ads |
 | FluentCRM Multi-Site Sync | [fluentcrm-multisite-sync](../fluentcrm-multisite-sync/) | Confermato attivo via `fluentcrm-sync/v1`; tab Gruppi (SKU Autori/Editori + filtro inbound) e backfill contatti AS (v4.5.x) |
@@ -111,7 +112,7 @@ Cartella dedicata: [snippet/libri-omeopatia/](../snippet/libri-omeopatia/) (molt
 | Path | Note |
 |------|------|
 | [snippet/woocommerce/](../snippet/woocommerce/) | Utility WC (analytics, stock column, blocca email, …) — *confermare attivi* |
-| [snippet/wordpress/](../snippet/wordpress/) | Es. `sicurezza.php`; `wp-normalizza-formato-anagrafica.php` **attivo** (Title Case nome/cognome + email minuscolo + tel/P.IVA: WP, WC, Fluent Forms, FluentCRM) |
+| [snippet/wordpress/](../snippet/wordpress/) | Es. `sicurezza.php`; `wp-normalizza-formato-anagrafica.php` **attivo** (Title Case nome/cognome + email minuscolo + tel/P.IVA: WP, WC, Fluent Forms, FluentCRM); `telegram-notifications.php` **attivo** sui tre siti (bot e chat; qui lo usa l'avviso pause FluentCRM) |
 | [snippet/consent-magic/](../snippet/consent-magic/) | Banner / MU ajax |
 
 ---
@@ -132,6 +133,8 @@ Cartella dedicata: [snippet/libri-omeopatia/](../snippet/libri-omeopatia/) (molt
 
 | Data | Modifica |
 |------|----------|
+| 2026-10-29 | HPOS confermato attivo. Repo `wc-orders-google-sheet` 1.0.0, non installato. |
+| 2026-10-12 | `telegram-notifications.php` caricato (snippet condiviso in `snippet/wordpress/`, anche su corsisalus.it e robertogava.it). |
 | 2026-10-02 | Site Health: PHP 8.2.34, Apache, `max_input_vars` 10000, memoria 768M. |
 | 2026-09-23 | Snippet schema Rank Math 1.0.6: BreadcrumbList sulle schede prodotto (briciole WooCommerce). |
 | 2026-09-22 | Doc: FluentCRM Multi-Site Sync v4.5.x (Gruppi + backfill); spedizioni dedupe Gratis; schema Rank Math GSC. |

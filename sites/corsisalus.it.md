@@ -3,7 +3,7 @@
 **Ruolo:** piattaforma corsi (LearnDash + WooCommerce) — Corsi Salus.  
 **URL:** https://www.corsisalus.it  
 **REST index:** https://www.corsisalus.it/wp-json/  
-**Ultimo aggiornamento doc:** 2026-10-02  
+**Ultimo aggiornamento doc:** 2026-10-29  
 **Ultimo refresh wp-json:** 2026-09-10
 
 > Living doc: aggiornare quando si tocca questo sito. Periodicamente rieseguire fetch di `/wp-json/` (vedi `sites/README.md`).
@@ -26,7 +26,7 @@
 | Hosting | SiteGround (`siteground-optimizer`, `sg-security`) | 2026-09-10 |
 | PHP | **8.2.34** (64 bit), SAPI `apache2handler`. Limiti in «Runtime PHP» | 2026-10-02 |
 | Web server | Apache su Linux 6.12.91-MCIclouder1135-C9 x86_64 | 2026-10-02 |
-| HPOS WooCommerce | da verificare (non esposto nell’index) | — |
+| HPOS WooCommerce | **spento**: gli ordini restano nei post `shop_order` | 2026-10-29 |
 
 ### Runtime PHP (Site Health, 2026-10-02)
 
@@ -86,6 +86,7 @@ Indicano plugin **attivi** che registrano route (non è l’elenco completo dei 
 | Consent Solution | [consent-solution](../consent-solution/) | Policy / consensi — *no namespace REST tipico* |
 | Quiz Omeopatia | [quiz-omeopatia](../quiz-omeopatia/) | Shortcode questionario repertorizzazione (corso febbre) v1.1.3 — *no `salus/` / no REST* |
 | WC Custom Checkout Account Fields | [wc-custom-checkout-account-fields](../wc-custom-checkout-account-fields/) | Campi checkout IT — *da confermare se attivo* |
+| WC Orders Google Sheet | [wc-orders-google-sheet](../wc-orders-google-sheet/) | Ordini completati verso Google Sheet. Repo pronta, **non installato**. Funziona anche senza HPOS |
 | Serialized Search Replace | [serialized-search-replace](../serialized-search-replace/) | Utility admin — *uso ad hoc* |
 
 ---
@@ -105,7 +106,6 @@ Cartella dedicata: [snippet/corsisalus/](../snippet/corsisalus/)
 | `hide-plugins-by-role.php` | Nasconde plugin per ruolo |
 | `user-role-editor.php` | Ruoli |
 | `log-last-login.php` | Ultimo login sito + accessi pagine corso LD in profilo utente (2026-09-11) |
-| `telegram-notifications.php` | Notifiche Telegram |
 | `twitter-tracking-code.php` | Tracking |
 | `custom-image-size.php` | Image size |
 | `shop-page-tag-corsi.php` | Shop / tag corsi |
@@ -127,7 +127,7 @@ Cartella dedicata: [snippet/corsisalus/](../snippet/corsisalus/)
 |------|------|
 | [snippet/learndash/](../snippet/learndash/) | Es. `shortcode-course-author-for-certificates.php` |
 | [snippet/woocommerce/](../snippet/woocommerce/) | Utility WC riusabili — *confermare quali attivi qui* |
-| [snippet/wordpress/](../snippet/wordpress/) | Sicurezza / notifiche admin; `wp-normalizza-formato-anagrafica.php` **attivo** (Title Case nome/cognome + email minuscolo + tel/P.IVA: WP, WC, Fluent Forms, FluentCRM) |
+| [snippet/wordpress/](../snippet/wordpress/) | Sicurezza / notifiche admin; `wp-normalizza-formato-anagrafica.php` **attivo** (Title Case nome/cognome + email minuscolo + tel/P.IVA: WP, WC, Fluent Forms, FluentCRM); `telegram-notifications.php` **attivo** sui tre siti (bot e chat; qui lo usano la fattura elettronica e l'avviso pause FluentCRM) |
 | [snippet/consent-magic/](../snippet/consent-magic/) | Banner / MU ajax — *da confermare* |
 
 ---
@@ -147,6 +147,8 @@ Cartella dedicata: [snippet/corsisalus/](../snippet/corsisalus/)
 
 | Data | Modifica |
 |------|----------|
+| 2026-10-29 | HPOS spento (ordini nei post). Repo `wc-orders-google-sheet` 1.0.0, non installato. |
+| 2026-10-12 | `telegram-notifications.php` spostato da `snippet/corsisalus/` a `snippet/wordpress/` e caricato su corsisalus.it, robertogava.it e libriomeopatia.it. |
 | 2026-10-02 | Site Health: PHP 8.2.34, Apache, `max_input_vars` 3000, memoria 768M. |
 | 2026-09-22 | Doc: aggiunto repo `quiz-omeopatia`; FluentCRM Multi-Site Sync v4.5.x (Gruppi + backfill); `log-last-login.php` accessi corsi; nota schema Course List allineata a v1.5.1. |
 | 2026-09-17 | FluentCRM Multi-Site Sync 4.5.2: backfill contatti per gruppo via Action Scheduler. |
