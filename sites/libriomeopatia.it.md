@@ -3,7 +3,7 @@
 **Ruolo:** e-commerce libri (WooCommerce) — Libri Omeopatia.  
 **URL:** https://www.libriomeopatia.it (anche https://libriomeopatia.it)  
 **REST index:** https://www.libriomeopatia.it/wp-json/  
-**Ultimo aggiornamento doc:** 2026-10-29  
+**Ultimo aggiornamento doc:** 2026-11-03  
 **Ultimo refresh wp-json:** 2026-09-10
 
 > Living doc: aggiornare quando si tocca questo sito. Periodicamente rieseguire fetch di `/wp-json/` (vedi `sites/README.md`).
@@ -133,6 +133,8 @@ Cartella dedicata: [snippet/libri-omeopatia/](../snippet/libri-omeopatia/) (molt
 
 | Data | Modifica |
 |------|----------|
+| 2026-11-03 | Snippet recensioni prodotto: il salvataggio ricontrolla l'acquisto con `wc_customer_bought_product`. |
+| 2026-11-03 | Snippet recensioni prodotto: aggiornamento solo se la recensione appartiene all'utente corrente (`mitoff_comment_id`). |
 | 2026-10-29 | HPOS confermato attivo. Repo `wc-orders-google-sheet` 1.0.0, non installato. |
 | 2026-10-12 | `telegram-notifications.php` caricato (snippet condiviso in `snippet/wordpress/`, anche su corsisalus.it e robertogava.it). |
 | 2026-10-02 | Site Health: PHP 8.2.34, Apache, `max_input_vars` 10000, memoria 768M. |
