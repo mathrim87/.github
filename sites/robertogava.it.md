@@ -5,7 +5,7 @@
 **WordPress path:** installazione sotto `/wp` (`url` REST = `https://www.robertogava.it/wp`)  
 **REST index:** https://www.robertogava.it/wp-json/  
 **Nota URL:** `https://robertogava.it/wp-json/` → **404**; usare sempre `www`.  
-**Ultimo aggiornamento doc:** 2026-10-02  
+**Ultimo aggiornamento doc:** 2026-10-12  
 **Ultimo refresh wp-json:** 2026-09-10
 
 > Living doc: aggiornare quando si tocca questo sito. Periodicamente rieseguire fetch di `/wp-json/` (vedi `sites/README.md`).
@@ -19,7 +19,7 @@
 | WordPress | REST ok sotto `/wp`; versione numerica non in index | 2026-09-10 |
 | Site name (REST) | `RobertoGava.it` — «Cardiologo, Farmacologo, Tossicologo e Omeopata» | 2026-09-10 |
 | WooCommerce | **assente** dai namespaces REST | 2026-09-10 |
-| FluentCRM | `fluent-crm/v1`, `fluent-crm/v2` — target **3.x** | 2026-09-10 |
+| FluentCRM | `fluent-crm/v1`, `fluent-crm/v2` — installata **3.2.5**; Pro **3.2.5** (ultima indicata **3.2.6**). Elenco in [robertogava.it-plugin.md](robertogava.it-plugin.md) | 2026-10-12 |
 | Fluent Forms / SMTP | `fluentform/v1`, `fluent-smtp` | 2026-09-10 |
 | Theme | GeneratePress (`generatepress/v1`, `generatepress-pro/v1`) | 2026-09-10 |
 | Page builder | Elementor + Pro (+ AI / One) | 2026-09-10 |
@@ -69,15 +69,17 @@
 
 Nessun namespace WooCommerce / LearnDash: sito non e-commerce/corsi lato REST.
 
+Inventario numerico (pagina Plugin, 35 plugin, auto-update disabilitati): [robertogava.it-plugin.md](robertogava.it-plugin.md), lettura 2026-10-12.
+
 ---
 
 ## Plugin custom Salus (workspace)
 
 | Plugin | Repo | Note |
 |--------|------|------|
-| FluentCRM Multi-Site Sync | [fluentcrm-multisite-sync](../fluentcrm-multisite-sync/) | Confermato attivo via `fluentcrm-sync/v1`; tab Gruppi (SKU Autori/Editori + filtro inbound) e backfill contatti AS (v4.5.x) |
-| Consent Solution | [consent-solution](../consent-solution/) | Registro form Fluent — *no namespace REST tipico* |
-| Serialized Search Replace | [serialized-search-replace](../serialized-search-replace/) | Utility admin — *uso ad hoc* |
+| FluentCRM Multi-Site Sync | [fluentcrm-multisite-sync](../fluentcrm-multisite-sync/) | Confermato attivo via `fluentcrm-sync/v1`; pagina Plugin **4.5.3** (2026-10-12); tab Gruppi (SKU Autori/Editori + filtro inbound) e backfill contatti AS |
+| Consent Solution | [consent-solution](../consent-solution/) | Registro form Fluent — pagina Plugin **1.4.2** (2026-10-12); *no namespace REST tipico* |
+| Serialized Search Replace | [serialized-search-replace](../serialized-search-replace/) | Utility admin — *uso ad hoc*. Non compare nella pagina Plugin del 2026-10-12 |
 
 ---
 
@@ -97,7 +99,7 @@ Cartella dedicata: [snippet/robertogava/](../snippet/robertogava/)
 | Path | Note |
 |------|------|
 | [snippet/consent-magic/](../snippet/consent-magic/) | `mu-salus-admin-ajax-json.php` (nota: submission Fluent su robertogava); `consent-magic-banner.php` |
-| [snippet/wordpress/](../snippet/wordpress/) | Sicurezza / notifiche admin; `wp-normalizza-formato-anagrafica.php` **attivo** (Title Case nome/cognome + email minuscolo + tel/P.IVA: WP, WC, Fluent Forms, FluentCRM) |
+| [snippet/wordpress/](../snippet/wordpress/) | Sicurezza / notifiche admin; `wp-normalizza-formato-anagrafica.php` **attivo** (Title Case nome/cognome + email minuscolo + tel/P.IVA: WP, WC, Fluent Forms, FluentCRM); `telegram-notifications.php` **attivo** sui tre siti (bot e chat; qui lo usa l'avviso pause FluentCRM) |
 
 ---
 
@@ -114,6 +116,8 @@ Cartella dedicata: [snippet/robertogava/](../snippet/robertogava/)
 
 | Data | Modifica |
 |------|----------|
+| 2026-10-12 | Inventario versioni dalla pagina Plugin: [robertogava.it-plugin.md](robertogava.it-plugin.md). FluentCRM 3.2.5, FluentCRM Pro 3.2.5 (ultima indicata 3.2.6). Auto-update disabilitati. |
+| 2026-10-12 | `telegram-notifications.php` caricato (snippet condiviso in `snippet/wordpress/`, anche su corsisalus.it e libriomeopatia.it). |
 | 2026-10-02 | Site Health: PHP 8.2.34, Apache, `max_input_vars` 3000, memoria 768M. |
 | 2026-09-22 | Doc: FluentCRM Multi-Site Sync v4.5.x (Gruppi + backfill contatti). |
 | 2026-09-17 | FluentCRM Multi-Site Sync 4.5.2: backfill contatti per gruppo via Action Scheduler. |
