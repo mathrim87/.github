@@ -108,7 +108,18 @@ jobs:
           SLUG="${{ inputs.plugin_slug }}"
           VER="${{ steps.v.outputs.version }}"
           mkdir -p dist
-          rsync -a --delete --exclude='.git' --exclude='.github' --exclude='dist' ./ "dist/${SLUG}/"
+          EXCLUDES=(--exclude='.git' --exclude='.github' --exclude='dist')
+          if [[ -f .distignore ]]; then
+            while IFS= read -r line || [[ -n "$line" ]]; do
+              line="${line%%#*}"
+              line="${line#"${line%%[![:space:]]*}"}"
+              line="${line%"${line##*[![:space:]]}"}"
+              if [[ -n "$line" ]]; then
+                EXCLUDES+=(--exclude="$line")
+              fi
+            done < .distignore
+          fi
+          rsync -a --delete "${EXCLUDES[@]}" ./ "dist/${SLUG}/"
           cd dist
           zip -r "${SLUG}-${VER}.zip" "${SLUG}"
           echo "zip_path=$GITHUB_WORKSPACE/dist/${SLUG}-${VER}.zip" >> $GITHUB_OUTPUT
